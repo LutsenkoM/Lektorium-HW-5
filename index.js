@@ -3,13 +3,21 @@ window.onload = function () {
     var input = document.getElementById('addText'),
         addButton = document.getElementById('add'),
         list = document.getElementById('todoList'),
-        todoList = [];
+        todoList = [],
+        todoListChecked = [];
         if (localStorage.getItem('todoList') != undefined) {
             todoList = JSON.parse(localStorage.getItem('todoList'));
             displayList();
         }
+        if (localStorage.getItem('todoListChecked') != undefined) {
+            todoList = JSON.parse(localStorage.getItem('todoListChecked'));
+            displayList();
+        }
 
-    addButton.onclick = function () {
+    addButton.onclick = AddDeal;
+
+    function AddDeal() {
+
         var i = todoList.length,
             deal = {};
             deal.name = input.value;
@@ -24,7 +32,10 @@ window.onload = function () {
         displayList();
 
         localStorage.setItem('todoList', JSON.stringify(todoList));
-    };
+
+        input.value = "";
+
+    }
 
     function displayList() {
         var setDeal = '';
@@ -44,5 +55,15 @@ window.onload = function () {
         document.getElementById("allDeal").innerHTML = todoList.length;
 
     }
+
+    var checkBox = document.getElementsByName("input");
+
+  function myFunction() {
+    var x = document.getElementById("myCheck").checked;
+    document.getElementById("demo").innerHTML = x;
+  }
+
+
+
 
 };
