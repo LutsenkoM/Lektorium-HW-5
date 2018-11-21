@@ -15,14 +15,14 @@ window.onload = function () {
 
     var i = todoList.length,
       task = {};
-    task.name = input.value;
-    task.status = false;
+      task.name = input.value;
+      task.status = false;
 
     if (task.name !== '') {
       todoList[i] = task;
     }
 
-    console.log(todoList);
+    // console.log(setDeal);
 
     displayList();
 
@@ -37,7 +37,8 @@ window.onload = function () {
     var t = e.target;
     t.classList.toggle("completed");
     // displayList();
-    console.log(todoList);
+    todoList[1].status = true;
+    console.log(todoList)
 
   });
 
