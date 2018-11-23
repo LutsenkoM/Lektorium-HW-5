@@ -36,45 +36,42 @@ window.onload = function () {
 
   var arrElem = document.querySelectorAll('li');
   var arrayElem = [];
+    for (var i = 0; i < arrElem.length; i++){
+      arrayElem.push(arrElem[i]);
+    }
+
+
 
 
 
   list.addEventListener('click',function(e){
     var t = e.target;
+    var indexElem = arrayElem.indexOf(t);
     t.classList.toggle("completed");
-    // displayList();
-    // console.log(todoList)
+      console.log(indexElem);
+
 
   });
 
 
-  // function changeStatus () {
-
-
-    for (var i = 0; i < arrElem.length; i++){
-      arrayElem.push(arrElem[i]);
-      arrElem[i].addEventListener('click', function(e){
-        var t = e.target;
-        var indexElem = arrayElem.indexOf(t);
-        // t.classList.toggle("completed");
-        // todoList[indexElem].status = true;
-
-        if (todoList[indexElem].status = false){
-          todoList[indexElem].status = true;
-        }
-        if(todoList[indexElem].status = true){
-          todoList[indexElem].status = false;
-        }
-
-        localStorage.setItem('todoList', JSON.stringify(todoList));
-
-        // displayList();
-
-          console.log(todoList[indexElem])
-        // displayList();
-      });
-    }
-  // }
+  // // function changeStatus () {
+  //
+  //
+  //   for (var i = 0; i < arrElem.length; i++){
+  //     arrayElem.push(arrElem[i]);
+  //     arrElem[i].addEventListener('click', function(e){
+  //       var t = e.target;
+  //       var indexElem = arrayElem.indexOf(t);
+  //       // t.classList.toggle("completed");
+  //       // todoList[indexElem].status = true;
+  //
+  //       // displayList();
+  //
+  //         console.log(todoList[indexElem])
+  //       // displayList();
+  //     });
+  //   }
+  // // }
 
 
 
@@ -121,4 +118,4 @@ window.onload = function () {
 
 
 
-https://jsfiddle.net/59d0qaee/5/
+// https://jsfiddle.net/59d0qaee/5/
