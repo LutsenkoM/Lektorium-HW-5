@@ -4,10 +4,10 @@ window.onload = function () {
     addButton = document.getElementById('add'),
     list = document.getElementById('todoList'),
     todoList = [];
-  if (localStorage.getItem('todoList') != undefined) {
-    todoList = JSON.parse(localStorage.getItem('todoList'));
-    displayList();
-  }
+    if (localStorage.getItem('todoList') != undefined) {
+      todoList = JSON.parse(localStorage.getItem('todoList'));
+      displayList();
+    }
 
   addButton.onclick = AddDeal;
 
@@ -33,14 +33,50 @@ window.onload = function () {
   }
 
 
+
+  var arrElem = document.querySelectorAll('li');
+  var arrayElem = [];
+
+
+
   list.addEventListener('click',function(e){
     var t = e.target;
     t.classList.toggle("completed");
     // displayList();
-    todoList[1].status = true;
-    console.log(todoList)
+    // console.log(todoList)
 
   });
+
+
+  // function changeStatus () {
+
+
+    for (var i = 0; i < arrElem.length; i++){
+      arrayElem.push(arrElem[i]);
+      arrElem[i].addEventListener('click', function(e){
+        var t = e.target;
+        var indexElem = arrayElem.indexOf(t);
+        // t.classList.toggle("completed");
+        // todoList[indexElem].status = true;
+
+        if (todoList[indexElem].status = false){
+          todoList[indexElem].status = true;
+        }
+        if(todoList[indexElem].status = true){
+          todoList[indexElem].status = false;
+        }
+
+        localStorage.setItem('todoList', JSON.stringify(todoList));
+
+        // displayList();
+
+          console.log(todoList[indexElem])
+        // displayList();
+      });
+    }
+  // }
+
+
 
 
 
@@ -75,6 +111,7 @@ window.onload = function () {
     list.innerHTML = setDeal ;
 
 
+
   }
 
 
@@ -84,3 +121,4 @@ window.onload = function () {
 
 
 
+https://jsfiddle.net/59d0qaee/5/
