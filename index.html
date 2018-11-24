@@ -2,20 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TODO list</title>
+    <title>Title</title>
+
     <style>
-        .chacked {
+        ul {
+            list-style: none;
+
+        }
+        li {
+            padding: 10px 50px;
+            border: 1px solid;
+            background-color: antiquewhite;
+        }
+        .completed {
             text-decoration: line-through;
+            background-color: aqua;
         }
     </style>
 </head>
 <body>
-    <div id="todoList"></div>
-	<input type="text" id="addText"><button id="add">Add</button><button id="save">Save</button>
-    <!--<p id="allDeal"></p>-->
-    <!--<p id="doneDeal"></p>-->
-
-
-<script src="./index1.js"></script>
+    <ul id="todoList"></ul>
+	<input type="text" id="addText"><button id="add">Add</button>
+    <p id="allDeal"></p>
+    <p id="doneDeal"></p>
+    <p id="demo"></p>
+<script src="./index.js"></script>
 </body>
 </html>
