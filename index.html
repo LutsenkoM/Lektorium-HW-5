@@ -7,12 +7,17 @@
     <style>
         ul {
             list-style: none;
-
+            padding: 0;
         }
         li {
             padding: 10px 50px;
             border: 1px solid;
             background-color: antiquewhite;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .del-task {
+            float: right;
         }
         .completed {
             text-decoration: line-through;
@@ -22,7 +27,7 @@
 </head>
 <body>
     <ul id="todoList"></ul>
-	<input type="text" id="addText"><button id="add">Add</button>
+	<input type="text" id="addText"><button id="add">Add Task</button>
     <p id="allDeal"></p>
     <p id="doneDeal"></p>
     <p id="demo"></p>

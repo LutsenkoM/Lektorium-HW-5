@@ -3,6 +3,7 @@ window.onload = function () {
   var input = document.getElementById('addText'),
     addButton = document.getElementById('add'),
     list = document.getElementById('todoList'),
+
     todoList = [];
     if (localStorage.getItem('todoList') != undefined) {
       todoList = JSON.parse(localStorage.getItem('todoList'));
@@ -12,17 +13,14 @@ window.onload = function () {
   addButton.onclick = AddDeal;
 
   function AddDeal() {
-
     var i = todoList.length,
       task = {};
       task.name = input.value;
-      task.status = false;
+      task.status = '';
 
     if (task.name !== '') {
       todoList[i] = task;
     }
-
-    // console.log(setDeal);
 
     displayList();
 
@@ -34,88 +32,51 @@ window.onload = function () {
 
 
 
-  var arrElem = document.querySelectorAll('li');
-  var arrayElem = [];
+  // CLick on specific li element
+  list.addEventListener('click',function(e){
+
+    var arrElem = document.querySelectorAll('li');
+    var arrayElem = [];
+    var delButtons = document.querySelectorAll('button.del-task');
+    var arrayDelButtons = [];
     for (var i = 0; i < arrElem.length; i++){
       arrayElem.push(arrElem[i]);
+      arrayDelButtons.push(delButtons[i]);
     }
+    //
+    // console.log(arrayDelButtons);
 
-
-
-
-
-  list.addEventListener('click',function(e){
+    // Get element's index in array
     var t = e.target;
     var indexElem = arrayElem.indexOf(t);
+    // Get element's index in array END
+
+    if (t.classList.contains("completed")) {
+      todoList[indexElem].status = '';
+    } else {
+      todoList[indexElem].status = 'completed';
+    }
+
     t.classList.toggle("completed");
-      console.log(indexElem);
 
-
+    localStorage.setItem('todoList', JSON.stringify(todoList));
+    
   });
+  // CLick on specific li element END
 
-
-  // // function changeStatus () {
-  //
-  //
-  //   for (var i = 0; i < arrElem.length; i++){
-  //     arrayElem.push(arrElem[i]);
-  //     arrElem[i].addEventListener('click', function(e){
-  //       var t = e.target;
-  //       var indexElem = arrayElem.indexOf(t);
-  //       // t.classList.toggle("completed");
-  //       // todoList[indexElem].status = true;
-  //
-  //       // displayList();
-  //
-  //         console.log(todoList[indexElem])
-  //       // displayList();
-  //     });
-  //   }
-  // // }
-
-
-
-
-
-
-
-
+  // Display task list
   function displayList() {
     var setDeal = '';
 
     for (var i=0; i < todoList.length; i++) {
 
-      //
-      // var allElements = document.getElementsByTagName("li");
-      // var ElemetsLi = allElements[i];
-      //
-      //
-      //
-      //
-      //
-
-      // if ( allElements.classList.contains("completed") ) {
-      //   todoList[i].status = true;
-      // }
-
-      console.log(      document.querySelectorAll('#todoList li'))
-      setDeal += '<li>' + todoList[i].name+ '  ' + todoList[i].status + '</li>';
-
-
+      setDeal += '<li class="'+ todoList[i].status + '">' + todoList[i].name + '<button class="del-task">Delete Task</button></li>';
 
     }
 
     list.innerHTML = setDeal ;
 
-
-
   }
-
-
-
+  // Display task list END
 
 };
-
-
-
-// https://jsfiddle.net/59d0qaee/5/
