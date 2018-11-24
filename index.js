@@ -3,14 +3,9 @@ window.onload = function () {
     var input = document.getElementById('addText'),
         addButton = document.getElementById('add'),
         list = document.getElementById('todoList'),
-        todoList = [],
-        todoListChecked = [];
+        todoList = [];
         if (localStorage.getItem('todoList') != undefined) {
             todoList = JSON.parse(localStorage.getItem('todoList'));
-            displayList();
-        }
-        if (localStorage.getItem('todoListChecked') != undefined) {
-            todoList = JSON.parse(localStorage.getItem('todoListChecked'));
             displayList();
         }
 
@@ -41,10 +36,9 @@ window.onload = function () {
         var setDeal = '';
         for (var i=0; i < todoList.length; i++) {
             if (todoList[i].status === false) {
-                setDeal += "<input type='checkbox'>"
+                setDeal += "<input class='checkbox' type='checkbox'>"
             } else {
-                setDeal += "<input type='checkbox' checked>"
-
+                setDeal += "<input class='checkbox' type='checkbox' checked>";
             }
 
             setDeal += todoList[i].name + "<br/>";
@@ -52,18 +46,10 @@ window.onload = function () {
         }
 
         list.innerHTML = setDeal + "<br/>";
+
         document.getElementById("allDeal").innerHTML = todoList.length;
 
     }
-
-    var checkBox = document.getElementsByName("input");
-
-  function myFunction() {
-    var x = document.getElementById("myCheck").checked;
-    document.getElementById("demo").innerHTML = x;
-  }
-
-
 
 
 };
