@@ -5,6 +5,9 @@
     <title>Title</title>
 
     <style>
+        * {
+            font-weight: 600;
+        }
         ul {
             list-style: none;
             padding: 0;
@@ -21,16 +24,34 @@
         }
         .completed {
             text-decoration: line-through;
-            background-color: aqua;
+            background-color: green;
+        }
+        .input-wrap input {
+            width: 66%;
+            padding: 10px 50px;
+        }
+        .input-wrap button{
+            width: 21%;
+            padding: 10px 50px;
+        }
+        .todoList-wrap {
+            padding-top: 50px;
+            width: 800px;
+            margin: 0 auto;
         }
     </style>
 </head>
 <body>
+<div class="todoList-wrap">
+    <p>Count of Tasks <span id="allTasks"></span> </p>
+    <p>Done Tasks <span id="doneTasks"></span> </p>
     <ul id="todoList"></ul>
-	<input type="text" id="addText"><button id="add">Add Task</button>
-    <p id="allDeal"></p>
-    <p id="doneDeal"></p>
-    <p id="demo"></p>
+    <div class="input-wrap">
+        <input type="text" id="addText"><button id="add">Add Task</button>
+    </div>
+</div>
+
+
 <script src="./index.js"></script>
 </body>
 </html>

@@ -29,67 +29,49 @@ window.onload = function () {
     input.value = "";
 
   }
-
-
-
-
-
-
   // CLick on specific li element
   list.addEventListener('click',function(e){
 
     var arrElem = document.querySelectorAll('li');
     var arrayElem = [];
+    var btnIndex = document.querySelectorAll('button.del-task');
+    var arraybtn = [];
     for (var i = 0; i < arrElem.length; i++){
       arrayElem.push(arrElem[i]);
+      arraybtn.push(btnIndex[i]);
     }
 
     // Get element's index in array
     var t = e.target;
     var indexElem = arrayElem.indexOf(t);
+    var indexBtn = arraybtn.indexOf(t);
     // Get element's index in array END
 
-    if (t.classList.contains("completed")) {
+    if ( indexElem <0 && indexBtn >= 0 ) { // Махинации с индексом в масиве, в зависимости на что кликаем ( li или конкретно button)
+      indexElem = indexBtn;
+    } else if (indexElem >=0 && indexBtn < 0) {
+      indexBtn = indexElem;
+    }
+
+    if (t.classList.contains("completed") && !action) {
       todoList[indexElem].status = '';
     } else {
       todoList[indexElem].status = 'completed';
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    var btnIndex = document.querySelectorAll('button.del-task');
-    var arraybtn = [];
-    for (var j = 0; j < btnIndex.length; j++){
-      arraybtn.push(btnIndex[j]);
-    }
-
-    var indexBtn = arraybtn.indexOf(t);
+    // Delete specific li
     var action = t.getAttribute('data-action');
     if (action) {
-      todoList.splice(todoList.indexOf(indexBtn),1);
+      todoList.splice(indexBtn,1);
     }
-
+    // Delete specific li end
 
     t.classList.toggle("completed");
 
     localStorage.setItem('todoList', JSON.stringify(todoList));
 
+    displayList();
+
   });
-
-
-
-
-
   // CLick on specific li element END
 
   // Display task list
@@ -103,8 +85,13 @@ window.onload = function () {
     }
 
     list.innerHTML = setDeal ;
+    document.getElementById("allTasks").innerHTML = todoList.length;
+
+    document.getElementById("doneTasks").innerHTML = document.querySelectorAll('li.completed').length
 
   }
+
+
   // Display task list END
 
 };
